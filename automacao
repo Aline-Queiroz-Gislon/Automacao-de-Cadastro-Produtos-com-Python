@@ -1,0 +1,89 @@
+# bibliotecas: são pacotes de códigos prontos que você pode usar no seu programa
+# pip install pyautogui
+# regra: no python os textos são sempre entre aspas simples ou aspas duplas
+# regra: variaveis não precisam ser declaradas com um tipo de dado, não precisam de var, int, string, etc nem aspas especiais no final
+# regra: cada linha do código é uma instrução para o computador executar
+# regra: o python lê o código de cima para baixo, linha por linha
+# regra: comentários são linhas que o python ignora, servem para você documentar o código
+# comentário de uma linha começa com #
+
+# Passo a passo do programa https://dlp.hashtagtreinamentos.com/python/intensivao/login
+# passo 1: entrar no sistema
+# passo 2: fazer login
+# passo 3: abrir a base de dados
+# passo 4: cadastrar um produto
+# passo 5: repetir o passo 4 até acabar o último produto
+
+
+import time
+import pyperclip
+import pyautogui
+
+# comando "breack" na biblioteca time ele interrompe sua execução e seu código não volta a rodar até o tempo que você definir
+# pyautogui.click -> clicar em um ponto da tela
+# pyautogui.write -> escrever um texto
+# pyautogui.press -> pressionar uma tecla
+# pyautogui.hotkey -> aperta um atalho / pressionar uma combinação de teclas 
+
+pyautogui.PAUSE = 1  # pausa de 1 segundo entre cada ação do pyautogui
+link = "https://dlp.hashtagtreinamentos.com/python/intensivao/login"
+
+# passo a passo do programa
+# passo 1: entrar no sistema da empresa
+# apertar a tecla do windows
+# passo 2: abrir o navegador chrome
+
+pyautogui.press("win")
+pyautogui.write("chrome")
+pyautogui.press("enter")
+time.sleep(3)
+
+# passo 3: abrir o link do sistema
+# copiar o link
+# colocar o link na barra de endereços
+# apertar enter
+
+pyperclip.copy(link)
+pyautogui.hotkey("ctrl", "v")
+pyautogui.press("enter")
+time.sleep(3)
+
+# passo 4: fazer login
+# clicar no campo e-mail e digitar o e-mail
+# clicar no campo senha e digitar a senha
+# clicar no botão login
+
+pyautogui.click(x=400, y=376)
+pyautogui.write("usuario_exemplo@email.com")
+pyautogui.press("tab")
+pyautogui.write("senha_exemplo")
+pyautogui.press("enter")
+time.sleep(5)
+
+# passo 5: abrir a base de dados
+# biblioteca para manipulação de tabelas e bases de dados
+# python -m pip install --upgrade pip setuptools wheel - comando para atualizar o pip
+# pip install pandas - comando para instalar a biblioteca pandas
+
+import pandas as pd
+tabela = pd.read_csv("produto.csv")
+
+# passo 6: cadastrar um produto
+# PRODUTI 1: Logitech,Mouse,1,25.95,6.50,
+
+pyautogui.click(x=715, y=257)
+pyautogui.write("MOLO000251")
+pyautogui.press("tab")
+pyautogui.write("Logitech")
+pyautogui.press("tab")
+pyautogui.write("Mouse")
+pyautogui.press("tab")
+pyautogui.write("1")
+pyautogui.press("tab")
+pyautogui.write("25.95")
+pyautogui.press("tab")
+pyautogui.write("6.50")
+pyautogui.press("tab")
+pyautogui.write("nan")
+pyautogui.press("tab")
+pyautogui.press("enter")
